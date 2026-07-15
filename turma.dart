@@ -43,9 +43,24 @@ class Turma {
       print('Nota lançada com sucesso!');
 
       print('Deseja continuar lançando notas? (s/n)');
-      lancando = stdin.readLineSync() ?? '';
-    }
+      lancando = (stdin.readLineSync() ?? '').toLowerCase();
 
+      if (lancando != 's') {
+        print('Informe o valor da nota:');
+        double valor = double.tryParse(stdin.readLineSync() ?? '0') ?? 0;
+
+        print('Informe a descrição da nota (ex: Prova 1):');
+        String descricao = stdin.readLineSync() ?? '';
+
+        //_alunos[i].notas.add(Nota(valor, descricao));
+        print('Nota $valor lançada com sucesso!');
+      } else if (lancando != 'n') {
+        print('Lançamento de notas encerrado.');
+      } else {
+        print('Opção inválida, por favor digite novamente (s/n):');
+        descricao = stdin.readLineSync() ?? '';
+      }
+    }
     print('Notas lançadas com sucesso!');
   }
 }
