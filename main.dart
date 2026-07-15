@@ -23,8 +23,7 @@ void main(List<String> args) {
         turma.cadastrarAluno();
         break;
       case 2:
-        // Lançar notas
-        turma.lancaNota(0, Nota(0));
+        turma.lancaNota();
         break;
       case 3: //Listar aluno (com média nessa porra)
         break;
