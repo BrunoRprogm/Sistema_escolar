@@ -1,6 +1,4 @@
 import 'dart:io';
-import 'aluno.dart';
-import 'nota.dart';
 import 'turma.dart';
 
 Turma turma = Turma();
@@ -26,6 +24,7 @@ void main(List<String> args) {
         turma.lancaNota();
         break;
       case 3: //Listar aluno (com média nessa porra)
+        turma.listarNota();
         break;
       case 0:
         print('Logout realizado!');

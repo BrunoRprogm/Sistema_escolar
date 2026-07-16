@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'aluno.dart';
+import 'main.dart';
 import 'nota.dart';
 
 class Turma {
@@ -33,34 +34,37 @@ class Turma {
         continue;
       }
 
+      print('Informe (p) para nota de prova e (t) para nota de trabalho:');
+      String tipo = stdin.readLineSync() ?? '';
+
       print('Informe o valor da nota:');
       double valor = double.tryParse(stdin.readLineSync() ?? '0') ?? 0;
 
       print('Informe a descrição da nota (ex: Prova 1):');
       String descricao = stdin.readLineSync() ?? '';
 
+      if (tipo == 'p') {
+        _alunos[i].lancarNotaProva(valor, descricao);
+      } else {
+        _alunos[i].lancarNotaTrabalho(valor, descricao);
+      }
+
       //_alunos[i].notas.add(Nota(valor, descricao));
       print('Nota lançada com sucesso!');
 
       print('Deseja continuar lançando notas? (s/n)');
       lancando = (stdin.readLineSync() ?? '').toLowerCase();
-
-      if (lancando != 's') {
-        print('Informe o valor da nota:');
-        double valor = double.tryParse(stdin.readLineSync() ?? '0') ?? 0;
-
-        print('Informe a descrição da nota (ex: Prova 1):');
-        String descricao = stdin.readLineSync() ?? '';
-
-        //_alunos[i].notas.add(Nota(valor, descricao));
-        print('Nota $valor lançada com sucesso!');
-      } else if (lancando != 'n') {
-        print('Lançamento de notas encerrado.');
-      } else {
-        print('Opção inválida, por favor digite novamente (s/n):');
-        descricao = stdin.readLineSync() ?? '';
-      }
     }
     print('Notas lançadas com sucesso!');
+  }
+
+  void listarNota() {
+    if (_alunos.isEmpty) {
+      print('Nenhum aluno cadastrado');
+      return;
+    }
+    for (var n in _alunos) {
+      n.listarNotaAluno();
+    }
   }
 }
